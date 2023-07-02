@@ -1,5 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { Entry, Pod_Image } from "../models";
+import { useDispatch } from "react-redux";
+import { Dispatch } from "redux";
+import { LoaderAction } from "../store/models/loaderTypes";
+import { LOADING } from "../store/actions/LoaderActionTypes";
 
 type Props = {
   item: Entry;
@@ -13,10 +17,14 @@ const getImage: (images: Array<Pod_Image>) => Pod_Image = (images) => {
 
 const Podcard = ({ item }: Props) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch<Dispatch<LoaderAction>>();
   const image = getImage(item["im:image"]);
   return (
     <div
-      onClick={() => navigate("/podcast/" + item.id.attributes["im:id"])}
+      onClick={() => {
+        navigate("/podcast/" + item.id.attributes["im:id"]);
+        dispatch({ type: LOADING });
+      }}
       className="flex bg-white shrink flex-col w-96 h-auto mt-20 shadow items-center justify-center p-4 cursor-pointer hover:shadow-lg transition-all"
     >
       <div className="h-20 flex items-end">

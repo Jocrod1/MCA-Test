@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import moment from "moment";
 
 import { EpisodeDetail, PodcastDetail } from "../models/Podcast";
 import { StoreStateType } from "../actions";

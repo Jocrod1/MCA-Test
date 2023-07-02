@@ -5,15 +5,19 @@ import FilterSearch from "../components/FilterSearch";
 import { Entry } from "../models";
 import { useDispatch } from "react-redux";
 import { Dispatch } from "redux";
+import { LoaderAction } from "../store/models/loaderTypes";
+import { LOADED, LOADING } from "../store/actions/LoaderActionTypes";
 
 const Main = () => {
   const dispatch: Dispatch<any> = useDispatch();
   const [data, setData] = useState<Array<Entry>>([]);
 
   const handleFetch = async () => {
+    dispatch({ type: LOADING });
     const entries = await dispatch(getMain());
 
     setData(entries);
+    dispatch({ type: LOADED });
   };
 
   useEffect(() => {
