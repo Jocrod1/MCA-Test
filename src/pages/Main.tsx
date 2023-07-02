@@ -3,12 +3,15 @@ import { getMain } from "../actions";
 import Podcard from "../components/Podcard";
 import FilterSearch from "../components/FilterSearch";
 import { Entry } from "../models";
+import { useDispatch } from "react-redux";
+import { Dispatch } from "redux";
 
 const Main = () => {
+  const dispatch: Dispatch<any> = useDispatch();
   const [data, setData] = useState<Array<Entry>>([]);
 
   const handleFetch = async () => {
-    const entries = await getMain();
+    const entries = await dispatch(getMain());
 
     setData(entries);
   };
