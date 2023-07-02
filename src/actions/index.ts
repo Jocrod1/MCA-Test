@@ -7,7 +7,7 @@ import moment from "moment";
 import { GetPodcast, SetPodcast } from "../store/creators/PodcastCreator";
 import { getRandMinutes } from "../utils";
 
-type StoreStateType = {FeedState: Feed, PodcastState: PodcastDetail[]};
+export type StoreStateType = {FeedState: Feed, PodcastState: PodcastDetail[]};
 
 type storeReducer = () => StoreStateType
   

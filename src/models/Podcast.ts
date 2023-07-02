@@ -19,11 +19,14 @@ export type PodcastDetail = {
 
 export type EpisodeDetail = {
     trackId:number,
+    collectionId: number,
     collectionName: string,
     trackName: string,
     shortDescription: string,
+    description: string,
     releaseDate: string, 
     trackViewUrl: string,
+    episodeUrl: string,
     artworkUrl600:string,
     timeLength: string,
 }

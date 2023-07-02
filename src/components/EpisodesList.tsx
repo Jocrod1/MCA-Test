@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { EpisodeDetail } from "../models/Podcast";
 import moment from "moment-timezone";
 
@@ -13,11 +14,15 @@ const EpisodesHeaderList = () => {
 
 type ItemProps = {
   episode: EpisodeDetail;
+  onClick: () => void;
 };
 
-const EpisodeItem = ({ episode }: ItemProps) => {
+const EpisodeItem = ({ episode, onClick }: ItemProps) => {
   return (
-    <div className="grid grid-cols-8 mx-6 py-3 bg-white even:bg-zinc-100 cursor-pointer hover:bg-zinc-200">
+    <div
+      onClick={() => onClick()}
+      className="grid grid-cols-8 mx-6 py-3 bg-white even:bg-zinc-100 cursor-pointer hover:bg-zinc-200"
+    >
       <div className="col-span-4 text-blue-500 font-medium whitespace-nowrap overflow-hidden text-ellipsis pr-8">
         {episode.trackName.toUpperCase()}
       </div>
@@ -34,6 +39,7 @@ type ListProps = {
 };
 
 const EpisodesList = ({ episodes }: ListProps) => {
+  const navigate = useNavigate();
   //TODO Connect with Data
   return (
     <div className="flex flex-col bg-white shadow divide-y py-8">
@@ -41,7 +47,13 @@ const EpisodesList = ({ episodes }: ListProps) => {
         <EpisodesHeaderList />
       </div>
       {episodes.map((ep, index) => (
-        <EpisodeItem key={index} episode={ep} />
+        <EpisodeItem
+          key={index}
+          onClick={() =>
+            navigate(`/podcast/${ep.collectionId}/episode/${ep.trackId}`)
+          }
+          episode={ep}
+        />
       ))}
     </div>
   );

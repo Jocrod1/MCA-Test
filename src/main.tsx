@@ -7,6 +7,8 @@ import Podcast from "./pages/Podcast.tsx";
 import { Provider } from "react-redux";
 import store from "./store/index.ts";
 import { PersistGate } from "redux-persist/integration/react";
+import Episode from "./pages/Episode.tsx";
+import PodcastLayout from "./pages/PodcastLayout.tsx";
 
 // const router = createBrowserRouter([
 //   {RouterProvider,
@@ -23,8 +25,11 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Main />} />
-            <Route path="podcast">
-              <Route path=":id" element={<Podcast />} />
+            <Route path="podcast" element={<PodcastLayout />}>
+              <Route path=":id" element={<Podcast />}></Route>
+              <Route path=":id/episode">
+                <Route path=":idEpisode" element={<Episode />}></Route>
+              </Route>
             </Route>
           </Route>
         </Routes>
