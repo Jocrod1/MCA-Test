@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { EpisodeDetail, PodcastDetail } from "../models/Podcast";
@@ -80,6 +80,7 @@ type Params = {
 };
 
 const Episode = () => {
+  const navigate = useNavigate();
   const videoRef = useRef<HTMLVideoElement>(null);
   const { id, idEpisode } = useParams<Params>();
   const podcastState = useSelector<StoreStateType, PodcastDetail[]>(
@@ -109,12 +110,18 @@ const Episode = () => {
 
   if (!episode) return null;
 
-  //TODO PONER BOTÓN DE ECHAR PARA ATRÁS
-
   return (
     <div className="flex flex-col gap-y-10 px-6">
       <div className="shadow bg-white py-8 px-8">
-        <h2 className="font-bold text-2xl">{episode.trackName}</h2>
+        <div className="flex flex-row items-center">
+          <span
+            onClick={() => navigate(-1)}
+            className="text-4xl font-bold mr-8 cursor-pointer text-blue-500"
+          >
+            {"≪"}
+          </span>
+          <h2 className="font-bold text-2xl">{episode.trackName}</h2>
+        </div>
         <Description
           text={episode.description}
           onClick={(secs) => {
