@@ -4,6 +4,8 @@ _Summary_
 
 A simple dashboard app to lookup on the top 100 Podcast on Apple Podcast
 
+ ### Test the App [Here!](https://mca-test.vercel.app/)
+
 ## Stack 🏗
 
 - **Framework:** [React](https://es.react.dev/)
