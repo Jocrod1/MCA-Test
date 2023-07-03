@@ -11,10 +11,12 @@ type DescriptionProps = {
   onClick: (secs: number) => void;
 };
 
+// Function to check if a string contains a time character interval
 const isTimeCharInterval = (txt: string, init: string, end: string) => {
   return txt.includes(init) && txt.includes(end) && txt.includes(":");
 };
 
+// Function to extract time values from a string containing a time character interval
 const getTime = (txt: string, init: string, end: string) => {
   const digitsArr = txt
     .slice(txt.indexOf(init) + 1, txt.indexOf(end))
@@ -32,6 +34,7 @@ const getTime = (txt: string, init: string, end: string) => {
   return { secs, min, hours };
 };
 
+// Component to display the episode description
 const Description = ({ text, onClick }: DescriptionProps) => {
   return (
     <p className="italic mt-4 whitespace-pre-line">
@@ -110,9 +113,10 @@ const Episode = () => {
   const podcastState = useSelector<StoreStateType, PodcastDetail[]>(
     (state) => state.PodcastState
   );
-  //   const [podcast, setPodcast] = useState<PodcastDetail>();
+
   const [episode, setEpisode] = useState<EpisodeDetail>();
 
+  // Function to fetch and set the episode data
   const handleFetch = () => {
     const _podcast = podcastState.find(
       (Pd) => Pd.collectionId == parseInt(id || "0")
@@ -125,13 +129,13 @@ const Episode = () => {
 
       if (!!episode) setEpisode(episode);
     }
-    // setEpisodres(_episodes);
   };
 
   useEffect(() => {
     handleFetch();
   }, [podcastState]);
 
+  // Return null if the episode is not available
   if (!episode) return null;
 
   return (
