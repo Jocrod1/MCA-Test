@@ -10,26 +10,50 @@ type DescriptionProps = {
   text: string;
   onClick: (secs: number) => void;
 };
+
+const isTimeCharInterval = (txt: string, init: string, end: string) => {
+  return txt.includes(init) && txt.includes(end) && txt.includes(":");
+};
+
+const getTime = (txt: string, init: string, end: string) => {
+  const digitsArr = txt
+    .slice(txt.indexOf(init) + 1, txt.indexOf(end))
+    .split(":")
+    .reverse()
+    .map((str) => parseInt(str));
+  let min: number,
+    secs: number,
+    hours: number = 0;
+
+  secs = digitsArr[0];
+  min = digitsArr[1];
+  if (!!digitsArr[2]) hours = digitsArr[2];
+
+  return { secs, min, hours };
+};
+
 const Description = ({ text, onClick }: DescriptionProps) => {
   return (
     <p className="italic mt-4 whitespace-pre-line">
       {text.split("\n").map((str) => (
         <>
           {str.split(/\s/).map((txt, index) => {
-            if (txt.includes("(") && txt.includes(")") && txt.includes(":")) {
-              const digitsArr = txt
-                .slice(txt.indexOf("(") + 1, txt.indexOf(")"))
-                .split(":")
-                .reverse()
-                .map((str) => parseInt(str));
-              let min: number,
-                secs: number,
-                hours: number = 0;
-
-              secs = digitsArr[0];
-              min = digitsArr[1];
-              if (!!digitsArr[2]) hours = digitsArr[2];
-
+            if (isTimeCharInterval(txt, "(", ")")) {
+              const { secs, min, hours } = getTime(txt, "(", ")");
+              return (
+                <>
+                  <span
+                    onClick={() => onClick(secs + min * 60 + hours * 3600)}
+                    className="text-blue-500 underline hover:no-underline cursor-pointer"
+                  >
+                    {txt}
+                  </span>
+                  &nbsp;
+                </>
+              );
+            }
+            if (isTimeCharInterval(txt, "[", "]")) {
+              const { secs, min, hours } = getTime(txt, "[", "]");
               return (
                 <>
                   <span
