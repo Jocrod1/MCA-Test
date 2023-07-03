@@ -10,7 +10,7 @@ const Layout = () => {
   return (
     <div className="flex flex-col h-full">
       <div className="flex-1 bg-zinc-100">
-        <div className="sticky bg-white shadow py-5 top-0">
+        <div className="sticky bg-white shadow py-5 top-0 z-50">
           <div className="relative flex flex-row mr-10 items-center justify-center">
             <h1
               onClick={() => navigate("/")}
