@@ -29,6 +29,7 @@ export type EpisodeDetail = {
     episodeUrl: string,
     artworkUrl600:string,
     timeLength: string,
+    trackTimeMillis: number,
 }
 export type resultResponse = {
     resultCount: Number, 

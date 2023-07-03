@@ -25,6 +25,36 @@ function generateRandom(min = 0, max = 100) {
     return dur.format("mm:ss")
   }
 
+  function pad(numberString:string, size : number) { 
+    let padded = numberString; 
+    while (padded.length < size) { 
+      padded = `0${padded}`; 
+    } return padded; 
+  } 
+
+  export const convertMsToTime = (value: number) : string => {
+    const seconds = Math.floor((value / 1000) % 60);
+    const minutes = Math.floor((value / 1000 / 60) % 60);
+    const hours = Math.floor((value  / 1000 / 3600 ) % 24)
+  
+    let humanized = [];
+    if(hours >= 1){
+      humanized = [
+        pad(hours.toString(), 2),
+        pad(minutes.toString(), 2),
+        pad(seconds.toString(), 2),
+      ];
+    }
+    else {
+      humanized = [      
+        pad(minutes.toString(), 2),
+        pad(seconds.toString(), 2),
+      ];
+    }
+  
+    return humanized.join(':');
+}
+
 export const isValidUrl = (urlString :string)=> {
     var urlPattern = new RegExp('^(https?:\\/\\/)?'+ // validate protocol
   '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // validate domain name
