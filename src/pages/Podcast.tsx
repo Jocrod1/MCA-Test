@@ -14,7 +14,6 @@ const Podcast = () => {
     (state) => state.PodcastState
   );
   const [podcast, setPodcast] = useState<PodcastDetail>();
-  // const [episodes, setEpisodres] = useState<Array<EpisodeDetail>>([]);
 
   const { id } = useParams<Params>();
 
@@ -24,7 +23,6 @@ const Podcast = () => {
     );
 
     if (!!_podcast) setPodcast(_podcast);
-    // setEpisodres(_episodes);
   };
 
   useEffect(() => {
@@ -34,7 +32,7 @@ const Podcast = () => {
   if (!podcast) return null;
 
   return (
-    <div className="flex flex-col gap-y-10 px-6">
+    <div className="flex flex-col gap-y-10 px-6 mb-10">
       <div className="shadow bg-white py-4 pl-4">
         <h2 className="font-bold text-xl">Episodes: {podcast?.trackCount}</h2>
       </div>

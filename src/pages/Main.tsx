@@ -32,7 +32,7 @@ const Main = () => {
   return (
     <div className="flex flex-col w-full px-16 mt-6">
       <FilterSearch items={data} handleChange={changeData} />
-      <div className="flex flex-row items-start justify-center w-full flex-wrap gap-4">
+      <div className="flex flex-row items-start justify-center w-full flex-wrap gap-4 mb-10">
         {data.map((d, index) => (
           <Podcard key={index} item={d} />
         ))}

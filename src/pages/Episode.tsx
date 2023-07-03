@@ -111,7 +111,7 @@ const Episode = () => {
   if (!episode) return null;
 
   return (
-    <div className="flex flex-col gap-y-10 px-6">
+    <div className="flex flex-col gap-y-10 px-6 mb-10">
       <div className="shadow bg-white py-8 px-8">
         <div className="flex flex-row items-center">
           <span
