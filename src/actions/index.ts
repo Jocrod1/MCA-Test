@@ -39,10 +39,10 @@ export const getPodcast = (id: number) => async (dispatch:Dispatchtype, getStore
   }
   else {
     const { data } = await axios.get(
-      `https://api.allorigins.win/get?url=${encodeURIComponent(`https://itunes.apple.com/lookup?id=${id}&country=US&media=podcast&entity=podcastEpisode&limit=10 `)}`
+      `https://cors-anywhere.herokuapp.com/${`https://itunes.apple.com/lookup?id=${id}&country=US&media=podcast&entity=podcastEpisode&limit=50 `}`
     );
 
-    const {results}: resultResponse =JSON.parse(data.contents); 
+    const {results}: resultResponse =data; 
 
     const [podcastDet, ...episodes] = results;
 
