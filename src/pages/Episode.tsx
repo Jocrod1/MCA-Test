@@ -109,6 +109,8 @@ const Episode = () => {
 
   if (!episode) return null;
 
+  //TODO PONER BOTÓN DE ECHAR PARA ATRÁS
+
   return (
     <div className="flex flex-col gap-y-10 px-6">
       <div className="shadow bg-white py-8 px-8">

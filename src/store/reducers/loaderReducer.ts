@@ -1,4 +1,5 @@
 import { LOADED, LOADING } from "../actions/LoaderActionTypes";
+import { LoaderAction } from "../models/loaderTypes";
 
 
 

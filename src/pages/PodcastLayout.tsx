@@ -14,9 +14,8 @@ type Params = {
 };
 
 const PodcastLayout = () => {
-  const loadingState = useSelector<StoreStateType, boolean>(
-    (state) => state.loadingState
-  );
+  const state = useSelector<StoreStateType, StoreStateType>((state) => state);
+  const loadingState = state.loadingState;
   const dispatch: Dispatch<any> = useDispatch();
   const [podcast, setPodcast] = useState<PodcastDetail>();
   // const [episodes, setEpisodres] = useState<Array<EpisodeDetail>>([]);
@@ -25,7 +24,10 @@ const PodcastLayout = () => {
 
   const handleFetch = async () => {
     dispatch({ type: LOADING });
-    const _podcast = await dispatch(getPodcast(parseInt(id || "0")));
+    const _podcast = await getPodcast(parseInt(id || "0"))(
+      dispatch,
+      () => state
+    );
 
     setPodcast(_podcast);
     dispatch({ type: LOADED });
