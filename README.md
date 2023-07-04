@@ -5,6 +5,7 @@ _Summary_
 A simple dashboard app to lookup on the top 100 Podcast on Apple Podcast
 
  ### Test the App [Here!](https://mca-test.vercel.app/)
+ Note: Please note that in order to test the application, you will need to request access to a service called [CORS Anywhere](https://cors-anywhere.herokuapp.com/corsdemo) to enable fetch requests.
 
 ## Stack 🏗
 
