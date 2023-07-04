@@ -5,7 +5,7 @@ type Props = {
 };
 const PodDetails = ({ podcast }: Props) => {
   return (
-    <div className="sticky top-24 flex flex-col bg-white shadow divide-y mx-32 px-4">
+    <div className="sticky top-24 flex flex-col bg-white shadow divide-y w-3/5 px-4">
       <img src={podcast.artworkUrl600} className="aspect-square mx-6 my-6" />
       <div className="flex flex-col py-6">
         <h4 className="font-bold whitespace-nowrap overflow-hidden text-ellipsis">

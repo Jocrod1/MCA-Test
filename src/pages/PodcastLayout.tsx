@@ -63,7 +63,7 @@ const PodcastLayout = () => {
   return (
     <div className="grid grid-cols-12 mt-6">
       {/* Render the PodDetails component and pass the podcast as props */}
-      <div className="col-span-4">
+      <div className="col-span-4 relative flex justify-center items-start">
         <PodDetails podcast={podcast} />
       </div>
       {/* Render the nested routes */}
