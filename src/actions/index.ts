@@ -14,8 +14,6 @@ export type StoreStateType = {
   loadingState: boolean;
 };
 
-type storeReducer = () => StoreStateType;
-
 export const getMain =
   () => async (dispatch: Dispatchtype, FeedState: Feed) => {
     let entry: Entry[] = [];

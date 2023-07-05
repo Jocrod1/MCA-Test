@@ -8,6 +8,7 @@ const useSearch = (items: Array<Entry>, handleChange: SearchFunction) => {
 
   useEffect(() => {
     if (!!items.length && !storedItems.length) setStoredItems(items);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items]);
 
   const handleSearch: SearchChange = (value) => {

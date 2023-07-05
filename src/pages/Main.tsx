@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -16,13 +16,14 @@ const Main = () => {
   );
 
   // Get the dispatch function from the Redux store
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const dispatch: Dispatch<any> = useDispatch();
 
   // Define the 'data' state variable to store an array of 'Entry' objects
   const [data, setData] = useState<Array<Entry>>([]);
 
   // Fetch data from the server and update the state
-  const handleFetch = async () => {
+  const handleFetch = useCallback(async () => {
     // Dispatch a 'LOADING' action to indicate that data is being loaded
     dispatch({ type: LOADING });
 
@@ -34,12 +35,11 @@ const Main = () => {
 
     // Dispatch a 'LOADED' action to indicate that data loading is complete
     dispatch({ type: LOADED });
-  };
-
+  }, [dispatch, FeedState]);
   // Fetch data when the component mounts
   useEffect(() => {
     handleFetch();
-  }, []);
+  }, [handleFetch]);
 
   // Callback function to update the 'data' state variable
   const changeData = (response: Array<Entry>) => {

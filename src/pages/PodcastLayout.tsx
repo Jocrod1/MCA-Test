@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Outlet, useParams } from 'react-router-dom';
@@ -27,6 +27,7 @@ const PodcastLayout = () => {
   );
 
   // Get the dispatch function from the Redux store
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const dispatch: Dispatch<any> = useDispatch();
 
   // Define the 'podcast' state variable to store a PodcastDetail object
@@ -36,7 +37,7 @@ const PodcastLayout = () => {
   const { id } = useParams<Params>();
 
   // Fetch the podcast data and update the state
-  const handleFetch = async () => {
+  const handleFetch = useCallback(async () => {
     // Dispatch a 'LOADING' action to indicate that data is being loaded
     dispatch({ type: LOADING });
 
@@ -51,12 +52,11 @@ const PodcastLayout = () => {
 
     // Dispatch a 'LOADED' action to indicate that data loading is complete
     dispatch({ type: LOADED });
-  };
-
+  }, [id, dispatch, FeedState, PodcastState]);
   // Fetch data when the component mounts
   useEffect(() => {
     handleFetch();
-  }, []);
+  }, [handleFetch]);
 
   // If the podcast is not available or still loading, show a loading indicator
   if (!podcast || loadingState)

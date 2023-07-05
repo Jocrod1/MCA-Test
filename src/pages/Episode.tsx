@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -23,12 +23,10 @@ const getTime = (txt: string, init: string, end: string) => {
     .split(':')
     .reverse()
     .map((str) => parseInt(str));
-  let min: number,
-    secs: number,
-    hours = 0;
+  let hours = 0;
 
-  secs = digitsArr[0];
-  min = digitsArr[1];
+  const secs: number = digitsArr[0];
+  const min: number = digitsArr[1];
   if (digitsArr[2]) hours = digitsArr[2];
 
   return { secs, min, hours };
@@ -110,7 +108,7 @@ const Episode = () => {
   const [episode, setEpisode] = useState<EpisodeDetail>();
 
   // Function to fetch and set the episode data
-  const handleFetch = () => {
+  const handleFetch = useCallback(() => {
     const _podcast = podcastState.find(
       (Pd) => Pd.collectionId == parseInt(id || '0')
     );
@@ -122,11 +120,11 @@ const Episode = () => {
 
       if (episode) setEpisode(episode);
     }
-  };
+  }, [idEpisode, id, podcastState]);
 
   useEffect(() => {
     handleFetch();
-  }, [podcastState]);
+  }, [podcastState, handleFetch]);
 
   // Return null if the episode is not available
   if (!episode) return null;

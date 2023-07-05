@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -23,7 +23,7 @@ const Podcast = () => {
   const { id } = useParams<Params>();
 
   // Fetch the podcast data and update the state
-  const handleFetch = () => {
+  const handleFetch = useCallback(() => {
     // Find the podcast in the podcastState array based on the 'id' parameter
     const _podcast = podcastState.find(
       (Pd) => Pd.collectionId == parseInt(id || '0')
@@ -31,12 +31,12 @@ const Podcast = () => {
 
     // If the podcast is found, update the 'podcast' state variable
     if (_podcast) setPodcast(_podcast);
-  };
+  }, [podcastState, id]);
 
   // Fetch data when the component mounts or when the podcastState changes
   useEffect(() => {
     handleFetch();
-  }, [podcastState]);
+  }, [podcastState, handleFetch]);
 
   // If the podcast is not available, return null
   if (!podcast) return null;
