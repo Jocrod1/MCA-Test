@@ -32,6 +32,6 @@ export type EpisodeDetail = {
     trackTimeMillis: number,
 }
 export type resultResponse = {
-    resultCount: Number, 
+    resultCount: number, 
     results: [PodcastDetailResponse, ...Array<EpisodeDetail>]
 }

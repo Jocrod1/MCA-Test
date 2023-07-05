@@ -29,7 +29,7 @@ const Podcast = () => {
     );
 
     // If the podcast is found, update the 'podcast' state variable
-    if (!!_podcast) setPodcast(_podcast);
+    if (_podcast) setPodcast(_podcast);
   };
 
   // Fetch data when the component mounts or when the podcastState changes

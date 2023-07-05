@@ -11,9 +11,8 @@ export type StoreStateType = {FeedState: Feed, PodcastState: PodcastDetail[], lo
 
 type storeReducer = () => StoreStateType
   
-export const getMain = () => async (dispatch:Dispatchtype, getStore : storeReducer) => {
+export const getMain = () => async (dispatch:Dispatchtype, FeedState: Feed) => {
   let entry : Entry[]= [];
-  const {FeedState} : StoreStateType = getStore();
   if(!!FeedState?.lastFetch && moment().diff(moment(FeedState.lastFetch), "days") <= 0){
     entry = FeedState.entry;
   }
@@ -27,10 +26,8 @@ export const getMain = () => async (dispatch:Dispatchtype, getStore : storeReduc
   return entry.map(entr => ({...entr, title:{...entr.title, label: entr.title.label.split(" - ")[0]}}));
 }
 
-export const getPodcast = (id: number) => async (dispatch:Dispatchtype, getStore : storeReducer)  => {
+export const getPodcast = (id: number) => async (dispatch:Dispatchtype, {PodcastState, FeedState}: {FeedState: Feed, PodcastState: PodcastDetail[]})  => {
   let podcastD : PodcastDetail;
-
-  const {PodcastState, FeedState} :StoreStateType = getStore();
 
   const podcastFromReducer : PodcastDetail | undefined = PodcastState.find(pD => pD.collectionId === id);
 
@@ -50,7 +47,7 @@ export const getPodcast = (id: number) => async (dispatch:Dispatchtype, getStore
   
     const podcast: PodcastDetail = {...podcastDet, description: entry?.summary.label || "", episodes: episodes.map(ep => ({...ep, timeLength: getRandMinutes()}))};
 
-    if(!!podcastFromReducer){
+    if(podcastFromReducer){
       SetPodcast(podcast)(dispatch);
     }
     else {

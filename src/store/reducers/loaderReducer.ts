@@ -3,7 +3,7 @@ import { LoaderAction } from "../models/loaderTypes";
 
 
 
-const initialState : boolean = false;
+const initialState  = false;
 
 const loaderReducer = (state : boolean = initialState, action: LoaderAction) : boolean => {
     switch(action.type){

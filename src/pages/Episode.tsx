@@ -25,11 +25,11 @@ const getTime = (txt: string, init: string, end: string) => {
     .map((str) => parseInt(str));
   let min: number,
     secs: number,
-    hours: number = 0;
+    hours = 0;
 
   secs = digitsArr[0];
   min = digitsArr[1];
-  if (!!digitsArr[2]) hours = digitsArr[2];
+  if (digitsArr[2]) hours = digitsArr[2];
 
   return { secs, min, hours };
 };
@@ -37,36 +37,32 @@ const getTime = (txt: string, init: string, end: string) => {
 // Component to display the episode description
 const Description = ({ text, onClick }: DescriptionProps) => {
   return (
-    <p className="italic mt-4 whitespace-pre-line">
-      {text.split("\n").map((str) => (
-        <>
+    <div className="italic mt-4 whitespace-pre-line">
+      {text.split("\n").map((str, jindex) => (
+        <div key={jindex}>
           {str.split(/\s/).map((txt, index) => {
             if (isTimeCharInterval(txt, "(", ")")) {
               const { secs, min, hours } = getTime(txt, "(", ")");
               return (
-                <>
-                  <span
-                    onClick={() => onClick(secs + min * 60 + hours * 3600)}
-                    className="text-blue-500 underline hover:no-underline cursor-pointer"
-                  >
-                    {txt}
-                  </span>
-                  &nbsp;
-                </>
+                <span
+                  key={index}
+                  onClick={() => onClick(secs + min * 60 + hours * 3600)}
+                  className="text-blue-500 underline hover:no-underline cursor-pointer"
+                >
+                  {txt + " "}
+                </span>
               );
             }
             if (isTimeCharInterval(txt, "[", "]")) {
               const { secs, min, hours } = getTime(txt, "[", "]");
               return (
-                <>
-                  <span
-                    onClick={() => onClick(secs + min * 60 + hours * 3600)}
-                    className="text-blue-500 underline hover:no-underline cursor-pointer"
-                  >
-                    {txt}
-                  </span>
-                  &nbsp;
-                </>
+                <span
+                  key={index}
+                  onClick={() => onClick(secs + min * 60 + hours * 3600)}
+                  className="text-blue-500 underline hover:no-underline cursor-pointer"
+                >
+                  {txt + " "}
+                </span>
               );
             }
             if (isValidUrl(txt)) {
@@ -77,27 +73,24 @@ const Description = ({ text, onClick }: DescriptionProps) => {
                 : "https://www." + txt;
 
               return (
-                <>
-                  <a
-                    key={index}
-                    href={hyperlink}
-                    target="_blank"
-                    className="text-blue-500 underline hover:no-underline cursor-pointer"
-                  >
-                    {txt}
-                  </a>
-                  &nbsp;
-                </>
+                <a
+                  key={index}
+                  href={hyperlink}
+                  target="_blank"
+                  className="text-blue-500 underline hover:no-underline cursor-pointer"
+                >
+                  {txt + " "}
+                </a>
               );
             }
 
-            return txt + " ";
+            return <span key={index}>{txt + " "}</span>;
           })}
 
           <br></br>
-        </>
+        </div>
       ))}
-    </p>
+    </div>
   );
 };
 
@@ -122,12 +115,12 @@ const Episode = () => {
       (Pd) => Pd.collectionId == parseInt(id || "0")
     );
 
-    if (!!_podcast) {
+    if (_podcast) {
       const episode = _podcast.episodes.find(
         (ep) => ep.trackId == parseInt(idEpisode || "0")
       );
 
-      if (!!episode) setEpisode(episode);
+      if (episode) setEpisode(episode);
     }
   };
 
@@ -153,7 +146,7 @@ const Episode = () => {
         <Description
           text={episode.description}
           onClick={(secs) => {
-            if (!!videoRef.current) {
+            if (videoRef.current) {
               videoRef.current.currentTime = secs;
             }
           }}

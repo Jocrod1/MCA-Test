@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { StoreStateType, getMain } from "../actions";
 import Podcard from "../components/Podcard";
 import FilterSearch from "../components/FilterSearch";
-import { Entry } from "../models";
+import { Entry, Feed } from "../models";
 import { useDispatch } from "react-redux";
 import { Dispatch } from "redux";
 import { LOADED, LOADING } from "../store/actions/LoaderActionTypes";
@@ -10,7 +10,9 @@ import { useSelector } from "react-redux";
 
 const Main = () => {
   // Get the current state from the Redux store
-  const state = useSelector<StoreStateType, StoreStateType>((state) => state);
+  const FeedState = useSelector<StoreStateType, Feed>(
+    (state) => state.FeedState
+  );
 
   // Get the dispatch function from the Redux store
   const dispatch: Dispatch<any> = useDispatch();
@@ -24,7 +26,7 @@ const Main = () => {
     dispatch({ type: LOADING });
 
     // Call the 'getMain' action creator to fetch data from the server
-    const entries = await getMain()(dispatch, () => state);
+    const entries = await getMain()(dispatch, FeedState);
 
     // Update the 'data' state variable with the fetched data
     setData(entries);
