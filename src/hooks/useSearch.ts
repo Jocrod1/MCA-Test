@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
 import { Entry, SearchChange, SearchFunction } from '../models';
 
 const useSearch = (items: Array<Entry>, handleChange: SearchFunction) => {

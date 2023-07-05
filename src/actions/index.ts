@@ -1,10 +1,11 @@
 import axios from 'axios';
+import moment from 'moment';
+
 import { Entry, Feed } from '../models';
 import { PodcastDetail, resultResponse } from '../models/Podcast';
-import { Dispatchtype } from '../store/models/mainsTypes';
 import { GetMain } from '../store/creators/MainCreator';
-import moment from 'moment';
 import { GetPodcast, SetPodcast } from '../store/creators/PodcastCreator';
+import { Dispatchtype } from '../store/models/mainsTypes';
 import { getRandMinutes } from '../utils';
 
 export type StoreStateType = {

@@ -1,14 +1,15 @@
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import Main from './pages/Main.tsx';
-import Layout from './Layout.tsx';
-import Podcast from './pages/Podcast.tsx';
 import { Provider } from 'react-redux';
-import store from './store/index.ts';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
+
+import Layout from './Layout.tsx';
+import './index.css';
 import Episode from './pages/Episode.tsx';
+import Main from './pages/Main.tsx';
+import Podcast from './pages/Podcast.tsx';
 import PodcastLayout from './pages/PodcastLayout.tsx';
+import store from './store/index.ts';
 
 // const router = createBrowserRouter([
 //   {RouterProvider,

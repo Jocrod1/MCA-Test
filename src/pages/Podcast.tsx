@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { StoreStateType } from '../actions';
-import { PodcastDetail } from '../models/Podcast';
-import EpisodesList from '../components/EpisodesList';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+
+import { StoreStateType } from '../actions';
+import EpisodesList from '../components/EpisodesList';
+import { PodcastDetail } from '../models/Podcast';
 
 type Params = {
   id: string;

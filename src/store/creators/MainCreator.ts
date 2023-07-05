@@ -1,8 +1,8 @@
+import { Dispatch } from 'redux';
+
 import { Feed } from '../../models';
 import { CLEAN_MAIN, GET_MAIN } from '../actions/MainActionTypes';
 import { Dispatchtype, FeedAction } from '../models/mainsTypes';
-
-import { Dispatch } from 'redux';
 
 export const GetMain = (feed: Feed) => (dispatch: Dispatchtype) => {
   const action: FeedAction = {

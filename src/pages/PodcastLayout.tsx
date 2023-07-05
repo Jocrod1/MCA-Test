@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
-import { StoreStateType, getPodcast } from '../actions';
-import { PodcastDetail } from '../models/Podcast';
-import PodDetails from '../components/PodDetails';
-
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Dispatch } from 'redux';
-import { LOADED, LOADING } from '../store/actions/LoaderActionTypes';
 import { useSelector } from 'react-redux';
+import { Outlet, useParams } from 'react-router-dom';
+import { Dispatch } from 'redux';
+
+import { StoreStateType, getPodcast } from '../actions';
+import PodDetails from '../components/PodDetails';
 import { Feed } from '../models';
+import { PodcastDetail } from '../models/Podcast';
+import { LOADED, LOADING } from '../store/actions/LoaderActionTypes';
 
 type Params = {
   id: string;

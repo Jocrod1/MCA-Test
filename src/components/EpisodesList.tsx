@@ -1,6 +1,7 @@
-import { useNavigate } from 'react-router-dom';
-import { EpisodeDetail } from '../models/Podcast';
 import moment from 'moment-timezone';
+import { useNavigate } from 'react-router-dom';
+
+import { EpisodeDetail } from '../models/Podcast';
 import { convertMsToTime } from '../utils';
 
 const EpisodesHeaderList = () => {

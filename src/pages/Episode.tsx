@@ -1,9 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import { EpisodeDetail, PodcastDetail } from '../models/Podcast';
 import { StoreStateType } from '../actions';
+import { EpisodeDetail, PodcastDetail } from '../models/Podcast';
 import { isValidUrl } from '../utils';
 
 type DescriptionProps = {

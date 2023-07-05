@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
-import { StoreStateType, getMain } from '../actions';
-import Podcard from '../components/Podcard';
-import FilterSearch from '../components/FilterSearch';
-import { Entry, Feed } from '../models';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Dispatch } from 'redux';
-import { LOADED, LOADING } from '../store/actions/LoaderActionTypes';
 import { useSelector } from 'react-redux';
+import { Dispatch } from 'redux';
+
+import { StoreStateType, getMain } from '../actions';
+import FilterSearch from '../components/FilterSearch';
+import Podcard from '../components/Podcard';
+import { Entry, Feed } from '../models';
+import { LOADED, LOADING } from '../store/actions/LoaderActionTypes';
 
 const Main = () => {
   // Get the current state from the Redux store

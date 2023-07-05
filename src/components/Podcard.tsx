@@ -1,9 +1,10 @@
-import { useNavigate } from 'react-router-dom';
-import { Entry, Pod_Image } from '../models';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Dispatch } from 'redux';
-import { LoaderAction } from '../store/models/loaderTypes';
+
+import { Entry, Pod_Image } from '../models';
 import { LOADING } from '../store/actions/LoaderActionTypes';
+import { LoaderAction } from '../store/models/loaderTypes';
 
 type Props = {
   item: Entry;

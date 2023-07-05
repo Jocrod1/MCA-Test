@@ -1,6 +1,7 @@
-import { Outlet, useNavigate } from 'react-router-dom';
-import { StoreStateType } from './actions';
 import { useSelector } from 'react-redux';
+import { Outlet, useNavigate } from 'react-router-dom';
+
+import { StoreStateType } from './actions';
 
 const Layout = () => {
   const loadingState = useSelector<StoreStateType, boolean>(
