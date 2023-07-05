@@ -1,4 +1,4 @@
-import { PodcastDetail } from "../models/Podcast";
+import { PodcastDetail } from '../models/Podcast';
 
 type Props = {
   podcast: PodcastDetail;

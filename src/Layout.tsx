@@ -1,6 +1,6 @@
-import { Outlet, useNavigate } from "react-router-dom";
-import { StoreStateType } from "./actions";
-import { useSelector } from "react-redux";
+import { Outlet, useNavigate } from 'react-router-dom';
+import { StoreStateType } from './actions';
+import { useSelector } from 'react-redux';
 
 const Layout = () => {
   const loadingState = useSelector<StoreStateType, boolean>(
@@ -13,7 +13,7 @@ const Layout = () => {
         <div className="sticky bg-white shadow py-5 top-0 z-50">
           <div className="relative flex flex-row mr-10 items-center justify-center">
             <h1
-              onClick={() => navigate("/")}
+              onClick={() => navigate('/')}
               className=" flex-1 ml-20 text-blue-600 font-semibold text-2xl cursor-pointer hover:drop-shadow-lg transition-all"
             >
               Podcaster

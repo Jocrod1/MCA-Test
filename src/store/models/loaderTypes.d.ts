@@ -1,6 +1,5 @@
-
 export type LoaderAction = {
-    type: string,
-}
+  type: string;
+};
 
-export type DispatchLoader= (args: LoaderAction) => LoaderAction;
+export type DispatchLoader = (args: LoaderAction) => LoaderAction;

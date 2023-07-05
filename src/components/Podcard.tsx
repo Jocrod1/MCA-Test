@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom";
-import { Entry, Pod_Image } from "../models";
-import { useDispatch } from "react-redux";
-import { Dispatch } from "redux";
-import { LoaderAction } from "../store/models/loaderTypes";
-import { LOADING } from "../store/actions/LoaderActionTypes";
+import { useNavigate } from 'react-router-dom';
+import { Entry, Pod_Image } from '../models';
+import { useDispatch } from 'react-redux';
+import { Dispatch } from 'redux';
+import { LoaderAction } from '../store/models/loaderTypes';
+import { LOADING } from '../store/actions/LoaderActionTypes';
 
 type Props = {
   item: Entry;
@@ -18,11 +18,11 @@ const getImage: (images: Array<Pod_Image>) => Pod_Image = (images) => {
 const Podcard = ({ item }: Props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch<Dispatch<LoaderAction>>();
-  const image = getImage(item["im:image"]);
+  const image = getImage(item['im:image']);
   return (
     <div
       onClick={() => {
-        navigate("/podcast/" + item.id.attributes["im:id"]);
+        navigate('/podcast/' + item.id.attributes['im:id']);
         dispatch({ type: LOADING });
       }}
       className="flex bg-white shrink flex-col w-96 h-auto mt-20 shadow items-center justify-center p-4 cursor-pointer hover:shadow-lg transition-all"
@@ -33,7 +33,7 @@ const Podcard = ({ item }: Props) => {
       <p className="font-semibold text-center mb-3">
         {item.title.label.toUpperCase()}
       </p>
-      <p className="font-light text-center">{`Author: ${item["im:artist"].label}`}</p>
+      <p className="font-light text-center">{`Author: ${item['im:artist'].label}`}</p>
     </div>
   );
 };

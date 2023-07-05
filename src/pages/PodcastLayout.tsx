@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
-import { Outlet, useParams } from "react-router-dom";
-import { StoreStateType, getPodcast } from "../actions";
-import { PodcastDetail } from "../models/Podcast";
-import PodDetails from "../components/PodDetails";
+import { useState, useEffect } from 'react';
+import { Outlet, useParams } from 'react-router-dom';
+import { StoreStateType, getPodcast } from '../actions';
+import { PodcastDetail } from '../models/Podcast';
+import PodDetails from '../components/PodDetails';
 
-import { useDispatch } from "react-redux";
-import { Dispatch } from "redux";
-import { LOADED, LOADING } from "../store/actions/LoaderActionTypes";
-import { useSelector } from "react-redux";
-import { Feed } from "../models";
+import { useDispatch } from 'react-redux';
+import { Dispatch } from 'redux';
+import { LOADED, LOADING } from '../store/actions/LoaderActionTypes';
+import { useSelector } from 'react-redux';
+import { Feed } from '../models';
 
 type Params = {
   id: string;
@@ -41,9 +41,9 @@ const PodcastLayout = () => {
     dispatch({ type: LOADING });
 
     // Call the 'getPodcast' action creator to fetch podcast data from the server
-    const _podcast = await getPodcast(parseInt(id || "0"))(dispatch, {
+    const _podcast = await getPodcast(parseInt(id || '0'))(dispatch, {
       FeedState,
-      PodcastState,
+      PodcastState
     });
 
     // Update the 'podcast' state variable with the fetched podcast data

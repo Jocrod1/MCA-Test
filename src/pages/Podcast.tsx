@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { StoreStateType } from "../actions";
-import { PodcastDetail } from "../models/Podcast";
-import EpisodesList from "../components/EpisodesList";
-import { useSelector } from "react-redux";
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { StoreStateType } from '../actions';
+import { PodcastDetail } from '../models/Podcast';
+import EpisodesList from '../components/EpisodesList';
+import { useSelector } from 'react-redux';
 
 type Params = {
   id: string;
@@ -25,7 +25,7 @@ const Podcast = () => {
   const handleFetch = () => {
     // Find the podcast in the podcastState array based on the 'id' parameter
     const _podcast = podcastState.find(
-      (Pd) => Pd.collectionId == parseInt(id || "0")
+      (Pd) => Pd.collectionId == parseInt(id || '0')
     );
 
     // If the podcast is found, update the 'podcast' state variable

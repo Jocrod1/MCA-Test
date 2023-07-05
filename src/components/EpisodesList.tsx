@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
-import { EpisodeDetail } from "../models/Podcast";
-import moment from "moment-timezone";
-import { convertMsToTime } from "../utils";
+import { useNavigate } from 'react-router-dom';
+import { EpisodeDetail } from '../models/Podcast';
+import moment from 'moment-timezone';
+import { convertMsToTime } from '../utils';
 
 const EpisodesHeaderList = () => {
   return (
@@ -28,7 +28,7 @@ const EpisodeItem = ({ episode, onClick }: ItemProps) => {
         {episode.trackName.toUpperCase()}
       </div>
       <div className="col-span-2">
-        {moment(episode.releaseDate).format("DD/MM/YYYY")}
+        {moment(episode.releaseDate).format('DD/MM/YYYY')}
       </div>
       <div className="col-span-2">
         {convertMsToTime(episode.trackTimeMillis)}

@@ -1,10 +1,10 @@
-import { useState, useEffect, useRef } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useState, useEffect, useRef } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-import { EpisodeDetail, PodcastDetail } from "../models/Podcast";
-import { StoreStateType } from "../actions";
-import { isValidUrl } from "../utils";
+import { EpisodeDetail, PodcastDetail } from '../models/Podcast';
+import { StoreStateType } from '../actions';
+import { isValidUrl } from '../utils';
 
 type DescriptionProps = {
   text: string;
@@ -13,14 +13,14 @@ type DescriptionProps = {
 
 // Function to check if a string contains a time character interval
 const isTimeCharInterval = (txt: string, init: string, end: string) => {
-  return txt.includes(init) && txt.includes(end) && txt.includes(":");
+  return txt.includes(init) && txt.includes(end) && txt.includes(':');
 };
 
 // Function to extract time values from a string containing a time character interval
 const getTime = (txt: string, init: string, end: string) => {
   const digitsArr = txt
     .slice(txt.indexOf(init) + 1, txt.indexOf(end))
-    .split(":")
+    .split(':')
     .reverse()
     .map((str) => parseInt(str));
   let min: number,
@@ -38,39 +38,39 @@ const getTime = (txt: string, init: string, end: string) => {
 const Description = ({ text, onClick }: DescriptionProps) => {
   return (
     <div className="italic mt-4 whitespace-pre-line">
-      {text.split("\n").map((str, jindex) => (
+      {text.split('\n').map((str, jindex) => (
         <div key={jindex}>
           {str.split(/\s/).map((txt, index) => {
-            if (isTimeCharInterval(txt, "(", ")")) {
-              const { secs, min, hours } = getTime(txt, "(", ")");
+            if (isTimeCharInterval(txt, '(', ')')) {
+              const { secs, min, hours } = getTime(txt, '(', ')');
               return (
                 <span
                   key={index}
                   onClick={() => onClick(secs + min * 60 + hours * 3600)}
                   className="text-blue-500 underline hover:no-underline cursor-pointer"
                 >
-                  {txt + " "}
+                  {txt + ' '}
                 </span>
               );
             }
-            if (isTimeCharInterval(txt, "[", "]")) {
-              const { secs, min, hours } = getTime(txt, "[", "]");
+            if (isTimeCharInterval(txt, '[', ']')) {
+              const { secs, min, hours } = getTime(txt, '[', ']');
               return (
                 <span
                   key={index}
                   onClick={() => onClick(secs + min * 60 + hours * 3600)}
                   className="text-blue-500 underline hover:no-underline cursor-pointer"
                 >
-                  {txt + " "}
+                  {txt + ' '}
                 </span>
               );
             }
             if (isValidUrl(txt)) {
-              const hyperlink = txt.startsWith("www")
-                ? "https://" + txt
-                : txt.startsWith("https://www.")
+              const hyperlink = txt.startsWith('www')
+                ? 'https://' + txt
+                : txt.startsWith('https://www.')
                 ? txt
-                : "https://www." + txt;
+                : 'https://www.' + txt;
 
               return (
                 <a
@@ -79,12 +79,12 @@ const Description = ({ text, onClick }: DescriptionProps) => {
                   target="_blank"
                   className="text-blue-500 underline hover:no-underline cursor-pointer"
                 >
-                  {txt + " "}
+                  {txt + ' '}
                 </a>
               );
             }
 
-            return <span key={index}>{txt + " "}</span>;
+            return <span key={index}>{txt + ' '}</span>;
           })}
 
           <br></br>
@@ -112,12 +112,12 @@ const Episode = () => {
   // Function to fetch and set the episode data
   const handleFetch = () => {
     const _podcast = podcastState.find(
-      (Pd) => Pd.collectionId == parseInt(id || "0")
+      (Pd) => Pd.collectionId == parseInt(id || '0')
     );
 
     if (_podcast) {
       const episode = _podcast.episodes.find(
-        (ep) => ep.trackId == parseInt(idEpisode || "0")
+        (ep) => ep.trackId == parseInt(idEpisode || '0')
       );
 
       if (episode) setEpisode(episode);
@@ -139,7 +139,7 @@ const Episode = () => {
             onClick={() => navigate(-1)}
             className="text-4xl font-bold mr-8 cursor-pointer text-blue-500"
           >
-            {"≪"}
+            {'≪'}
           </span>
           <h2 className="font-bold text-2xl">{episode.trackName}</h2>
         </div>
