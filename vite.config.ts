@@ -9,13 +9,21 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
       plugins: [react()],
       build: {
         minify: false
+      },
+      test: {
+        globals: true,
+        environment: 'jsdom'
       }
     };
   } else {
     // command === 'build'
     return {
       // build specific config
-      plugins: [react()]
+      plugins: [react()],
+      test: {
+        globals: true,
+        environment: 'jsdom'
+      }
     };
   }
 });

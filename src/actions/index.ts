@@ -1,5 +1,5 @@
 import axios from 'axios';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 import { Entry, Feed } from '../models';
 import { PodcastDetail, resultResponse } from '../models/Podcast';

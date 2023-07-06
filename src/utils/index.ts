@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 function generateRandom(min = 0, max = 100) {
   // find diff
