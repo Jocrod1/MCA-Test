@@ -1,6 +1,7 @@
 {
   "headers": [
     {
+      "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
       "source": "/api/(.*)",
       "headers": [
         { "key": "Access-Control-Allow-Credentials", "value": "true" },
