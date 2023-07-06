@@ -7,6 +7,7 @@ import Layout from './Layout.tsx';
 import './index.css';
 import Episode from './pages/Episode.tsx';
 import Main from './pages/Main.tsx';
+import NotFound from './pages/NotFound.tsx';
 import Podcast from './pages/Podcast.tsx';
 import PodcastLayout from './pages/PodcastLayout.tsx';
 import store from './store/index.ts';
@@ -32,6 +33,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                 <Route path=":idEpisode" element={<Episode />}></Route>
               </Route>
             </Route>
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </Router>
